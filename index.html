@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pueblo y Fábrica de Arepas 3D - Cosecha y Siembra</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Three.js y OrbitControls desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+  <!-- Contenedor del Lienzo 3D -->
+  <div id="canvas-container"></div>
+
+  <!-- Interfaz de Usuario (HUD) -->
+  <div id="ui-layer">
+
+    <!-- Encabezado / Barra de Recursos -->
+    <div id="top-bar">
+      <h1>🫓 Arepera y Granja del Pueblo 3D 🌾</h1>
+      <div id="resources">
+        <div class="res-card"><span class="icon">🌽</span> Maíz Cosechado: <strong id="farm-corn">0</strong></div>
+        <div class="res-card"><span class="icon">🧺</span> En tu Canasta: <strong id="player-corn">0</strong>/10</div>
+        <div class="res-card"><span class="icon">🥣</span> Masa Lista: <strong id="dough-count">0</strong></div>
+        <div class="res-card"><span class="icon">🫓</span> Arepas en Mano: <strong id="arepas-count">0</strong></div>
+        <div class="res-card"><span class="icon">🏪</span> Arepas en Local: <strong id="shop-arepas">0</strong></div>
+        <div class="res-card"><span class="icon">🪙</span> Monedas: <strong id="coins-count">0</strong></div>
+      </div>
+    </div>
+
+    <!-- Guía para la Presentación -->
+    <div id="presentation-guide">
+      <div class="guide-title">📌 Paso a Paso:</div>
+      <div id="guide-step">1. Recoge el maíz cosechado y sembrado en la canasta del cultivo.</div>
+      <button id="buy-worker-btn" onclick="buyFarmerWorker()">👨‍🌾 Contratar Sembrador ($50)</button>
+    </div>
+
+    <!-- Indicador de Interacción Central -->
+    <div id="interaction-prompt" class="hidden">
+      Presiona <span class="key">E</span> o toca aquí para <span id="action-text">Interactuar</span>
+    </div>
+
+    <!-- Botones de Control Táctil -->
+    <div id="touch-controls">
+      <div id="dpad">
+        <button id="btn-up" class="dbtn">▲</button>
+        <div class="drow">
+          <button id="btn-left" class="dbtn">◄</button>
+          <button id="btn-down" class="dbtn">▼</button>
+          <button id="btn-right" class="dbtn">►</button>
+        </div>
+      </div>
+      <button id="btn-action" class="action-btn">🧺 ACCIÓN (E)</button>
+    </div>
+
+    <!-- Globo de Diálogo de Personajes -->
+    <div id="dialogue-box" class="hidden">
+      <div id="dialogue-speaker">Doña Berta</div>
+      <div id="dialogue-text">"¡Bienvenido! Trae el maíz al puesto para amasar."</div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

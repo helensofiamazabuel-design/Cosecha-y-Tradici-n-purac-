@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #111;
+}
+
+#canvas-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+#top-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#top-bar h1 {
+  color: #fff;
+  font-size: 1.4rem;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 8px 24px;
+  border-radius: 20px;
+  border: 2px solid #ffb703;
+  backdrop-filter: blur(5px);
+  text-shadow: 1px 1px 2px #000;
+}
+
+#resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.res-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.res-card .icon {
+  font-size: 1.1rem;
+}
+
+/* Guía y Botón de Contratación */
+#presentation-guide {
+  pointer-events: auto;
+  align-self: center;
+  background: rgba(13, 71, 161, 0.88);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 15px;
+  border: 2px solid #64b5f6;
+  max-width: 650px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.guide-title {
+  font-weight: bold;
+  color: #ffd54f;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#guide-step {
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+#buy-worker-btn {
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background 0.2s;
+}
+
+#buy-worker-btn:hover {
+  background: #e65100;
+  transform: scale(1.05);
+}
+
+#buy-worker-btn:disabled {
+  background: #888;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Prompter de Interacción */
+#interaction-prompt {
+  pointer-events: auto;
+  align-self: center;
+  position: absolute;
+  top: 60%;
+  background: rgba(0, 0, 0, 0.88);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: 2px solid #4caf50;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+#interaction-prompt.hidden {
+  display: none;
+}
+
+.key {
+  background: #ff9800;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Controles Táctiles */
+#touch-controls {
+  pointer-events: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+#dpad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drow {
+  display: flex;
+  gap: 5px;
+}
+
+.dbtn {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #333;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.dbtn:active {
+  background: #ffb703;
+}
+
+.action-btn {
+  padding: 15px 25px;
+  background: #4caf50;
+  color: white;
+  border: 3px solid #fff;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  touch-action: manipulation;
+}
+
+.action-btn:active {
+  background: #388e3c;
+  transform: scale(0.95);
+}
+
+/* Cuadro de Diálogos */
+#dialogue-box {
+  pointer-events: auto;
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 550px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid #ff9800;
+  border-radius: 15px;
+  padding: 12px 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+#dialogue-box.hidden {
+  display: none;
+}
+
+#dialogue-speaker {
+  font-weight: bold;
+  color: #e65100;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+#dialogue-text {
+  color: #222;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
